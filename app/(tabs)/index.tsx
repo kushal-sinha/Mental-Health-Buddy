@@ -1,98 +1,101 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import ActivityTracker from '@/components/ActivityTracker';
+import Insights from '@/components/Insights';
+import Journal from '@/components/Journal';
+import JournalPreview from '@/components/JournalPreview';
+import MoodQuickAdd from '@/components/MoodQuickAdd';
+import MoodTracker from '@/components/MoodTracker';
+import SleepTracker from '@/components/SleepTracker';
+import TabBar from '@/components/TabBar';
+import { AppProvider } from '@/contexts/AppContext';
+import Header from '@/components/Header';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+const TABS = ['Home', 'Mood', 'Journal', 'Sleep', 'Activity', 'Insights'] as const;
+type Tab = typeof TABS[number];
 
-export default function HomeScreen() {
+export default function App() {
+  const [tab, setTab] = useState<Tab>('Home');
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <AppProvider>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Header onHome={() => setTab('Home')} />
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+          {tab === 'Home' && (
+            <View style={styles.homeContainer}>
+
+              {/* Mood Quick Add */}
+              <View style={styles.sectionWrapper}>
+                <MoodQuickAdd onOpen={() => setTab('Mood')} />
+              </View>
+
+              {/* Journal Preview */}
+              <View style={styles.sectionWrapper}>
+                <Text style={styles.sectionTitle}>📓 Journal Preview</Text>
+                <JournalPreview openJournal={() => setTab('Journal')} />
+              </View>
+
+              {/* Insights */}
+              <View style={styles.sectionWrapper}>
+                <Text style={styles.sectionTitle}>💡 Insights</Text>
+                <Insights />
+              </View>
+            </View>
+          )}
+
+          {tab === 'Mood' && <MoodTracker />}
+          {tab === 'Journal' && <Journal />}
+          {tab === 'Sleep' && <SleepTracker />}
+          {tab === 'Activity' && <ActivityTracker />}
+          {tab === 'Insights' && <Insights />}
+        </ScrollView>
+
+        <TabBar tab={tab} setTab={setTab} tabs={TABS} />
+      </SafeAreaView>
+    </AppProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: '#F3F6FA',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  scrollContainer: {
+    padding: 16,
+    paddingBottom: 80,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  homeContainer: {
+    flex: 1,
+  },
+  welcomeSection: {
+    backgroundColor: '#4D96FF',
+    padding: 24,
+    borderRadius: 24,
+    marginBottom: 24,
+  },
+  h1: {
+    fontSize: 26,
+    fontWeight: '700',
+    color: '#fff',
+    marginBottom: 6,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#e0f7fa',
+  },
+  sectionWrapper: {
+    marginBottom: 24,
+    paddingHorizontal: 4,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#333',
+    marginBottom: 12,
   },
 });

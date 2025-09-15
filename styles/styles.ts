@@ -1,0 +1,26 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: '#f6f7fb' },
+    header: { marginBottom: 12 },
+    headerTitle: { fontSize: 22, fontWeight: '700' },
+    headerSub: { color: '#666', marginTop: 4 },
+    h1: { fontSize: 18, fontWeight: '700', marginBottom: 6 },
+    small: { color: '#666' },
+    card: { backgroundColor: 'white', padding: 12, borderRadius: 12, marginBottom: 12 },
+    input: { borderWidth: 1, borderColor: '#eee', padding: 8, borderRadius: 8, marginTop: 8 },
+    primaryBtn: { backgroundColor: '#3b82f6', paddingVertical: 10, borderRadius: 10, marginTop: 8, alignItems: 'center' },
+    primaryBtnText: { color: 'white', fontWeight: '600' },
+    rowSpace: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 12 },
+    listItem: { flexDirection: 'row', alignItems: 'center', paddingVertical: 8, borderBottomWidth: 1, borderColor: '#f1f1f1' },
+    moodBtn: { alignItems: 'center', padding: 8, borderRadius: 8, width: 64 },
+    moodBtnActive: { backgroundColor: '#eef2ff' },
+    moodText: { fontSize: 22 },
+    moodLabel: { fontSize: 12, textTransform: 'capitalize' },
+    tabbar: { flexDirection: 'row', justifyContent: 'space-around', padding: 8, borderTopWidth: 1, borderColor: '#eee', backgroundColor: 'white' },
+    tabItem: { padding: 6 },
+    tabItemActive: { borderBottomWidth: 2, borderColor: '#3b82f6' },
+    statLabel: { color: '#666' },
+    statValue: { fontSize: 18, fontWeight: '700' },
+    quickBtn: { alignItems: 'center', padding: 8, width: 72 },
+});
