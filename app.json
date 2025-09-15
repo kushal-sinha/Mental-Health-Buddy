@@ -7,9 +7,21 @@
     "icon": "./assets/images/icon.png",
     "scheme": "meded",
     "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4D96FF"
+    },
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourname.meded",
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "This app uses notifications to remind you to log your mood and journal.",
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
