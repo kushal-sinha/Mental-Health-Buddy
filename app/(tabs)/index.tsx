@@ -23,7 +23,7 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-          <Header onHome={() => setTab('Home')} />
+          {/* <Header onHome={() => setTab('Home')} /> */}
 
           {tab === 'Home' && (
             <View style={styles.homeContainer}>

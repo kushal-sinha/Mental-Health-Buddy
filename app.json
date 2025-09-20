@@ -7,11 +7,6 @@
     "icon": "./assets/images/icon.png",
     "scheme": "meded",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#4D96FF"
-    },
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,

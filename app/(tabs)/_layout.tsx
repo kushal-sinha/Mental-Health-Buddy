@@ -52,15 +52,6 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="support"
-        options={{
-          title: 'Support',
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="lifepreserver.fill" color={color} />
-          ),
-        }}
-      />
     </Tabs>
   );
 }
