@@ -14,8 +14,10 @@
       "infoPlist": {
         "NSUserTrackingUsageDescription": "This app uses notifications to remind you to log your mood and journal.",
         "UIBackgroundModes": [
+          "remote-notification",
           "remote-notification"
-        ]
+        ],
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -26,7 +28,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.kushal.HealthBuddy"
     },
     "web": {
       "output": "static",
@@ -50,6 +53,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0986718b-6a26-46aa-a597-d2f1b8ac5d38"
+      }
+    },
+    "owner": "kushalsinhaaa"
   }
 }
